@@ -28,7 +28,7 @@ function BaiduCalendar(props) {
   let time = new Date();
   let [year, month, day] = props.date
     ? props.date.split("-")
-    : [time.getFullYear(), time.getMonth + 1(), time.getDate()];
+    : [time.getFullYear(), time.getMonth() + 1, time.getDate()];
   // 处理年份
   let [selectYear, setSelectYear] = useState(year);
   // 处理月份selectMonth,setSelectMonth,monthOptions
@@ -67,7 +67,7 @@ function BaiduCalendar(props) {
     () => {
       let [year, month, day] = props.date
         ? props.date.split("-")
-        : [time.getFullYear(), time.getMonth + 1(), time.getDate()];
+        : [time.getFullYear(), time.getMonth() + 1, time.getDate()];
       setSelectYear(year);
       setSelectMonth(month);
       setSelectDay(day);

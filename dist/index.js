@@ -1015,7 +1015,7 @@ function BaiduCalendar(props) {
 
   var time = new Date();
 
-  var _ref = props.date ? props.date.split("-") : [time.getFullYear(), time.getMonth + 1(), time.getDate()],
+  var _ref = props.date ? props.date.split("-") : [time.getFullYear(), time.getMonth() + 1, time.getDate()],
       _ref2 = _slicedToArray(_ref, 3),
       year = _ref2[0],
       month = _ref2[1],
@@ -1070,7 +1070,7 @@ function BaiduCalendar(props) {
     initRange();
   }, [props.range]);
   React.useEffect(function () {
-    var _ref3 = props.date ? props.date.split("-") : [time.getFullYear(), time.getMonth + 1(), time.getDate()],
+    var _ref3 = props.date ? props.date.split("-") : [time.getFullYear(), time.getMonth() + 1, time.getDate()],
         _ref4 = _slicedToArray(_ref3, 3),
         year = _ref4[0],
         month = _ref4[1],
