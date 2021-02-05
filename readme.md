@@ -6,6 +6,8 @@
 
 >vue3版:[https://github.com/qiuquanwu/vue-baidu-calendar](https://github.com/qiuquanwu/vue-baidu-calendar)
 
+> [在线demo](https://isfive.gitee.io/baidu-calendar/)
+
 因为react版本问题
 ## 先安装react-select
 ```
