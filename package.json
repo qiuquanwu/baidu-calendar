@@ -52,5 +52,10 @@
     "rollup-plugin-terser": "^6.1.0",
     "typescript": "^3.9.6"
   },
-  "author": "qiuquanwu <“919403255@qq.com>"
+  "author": "qiuquanwu <“919403255@qq.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qiuquanwu/baidu-calendar"
+  },
+  "homepage": "https://github.com/qiuquanwu/vue-baidu-calendar"
 }
