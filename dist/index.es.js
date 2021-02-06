@@ -1136,7 +1136,7 @@ function BaiduCalendar(props) {
   };
 
   return /*#__PURE__*/React.createElement("div", {
-    className: "op-calendar-pc "
+    className: ["op-calendar-pc ", dayInfo.lunarFestival ? "op-calendar-pc-holidaystyle" : ""].join(" ")
   }, /*#__PURE__*/React.createElement("div", {
     className: "op-calendar-pc-box"
   }, /*#__PURE__*/React.createElement("div", {

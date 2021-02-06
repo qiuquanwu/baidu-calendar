@@ -6,11 +6,11 @@ import useMonth from "./monthOptions.js";
 import generator from "./generator.js";
 import Item from "./Item.jsx";
 import solarLunar from "./utils/solarLunar.js";
-import { LUNAR_FESTIVAL, FESTIVAL,HOLIDAY } from "./utils/lunarFestival.js";
+import { LUNAR_FESTIVAL, FESTIVAL, HOLIDAY } from "./utils/lunarFestival.js";
 import "./index.css";
 function BaiduCalendar(props) {
   let yearsOptions = [];
-  let {change}= props
+  let { change } = props;
   const initRange = () => {
     // 年选范围
     let range = props.range ? props.range : [2010, 2030];
@@ -38,7 +38,7 @@ function BaiduCalendar(props) {
   let [fullDateArray, setFullDateArray] = useState(
     generator(selectYear, selectMonth, selectDay)
   );
-  
+
   let [dayInfo, setDayInfo] = useState({});
   let [hoverClass, setHoverClass] = useState(false);
   const getInfo = (year, month, day) => {
@@ -57,24 +57,18 @@ function BaiduCalendar(props) {
   //初始化年份
   initRange();
   //年份范围发生变化
-  useEffect(
-    () => {
-      initRange();
-    },
-    [props.range]
-  );
-  useEffect(
-    () => {
-      let [year, month, day] = props.date
-        ? props.date.split("-")
-        : [time.getFullYear(), time.getMonth() + 1, time.getDate()];
-      setSelectYear(year);
-      setSelectMonth(month);
-      setSelectDay(day);
-      setFullDateArray(generator(year, month, day));
-    },
-    [props.date]
-  );
+  useEffect(() => {
+    initRange();
+  }, [props.range]);
+  useEffect(() => {
+    let [year, month, day] = props.date
+      ? props.date.split("-")
+      : [time.getFullYear(), time.getMonth() + 1, time.getDate()];
+    setSelectYear(year);
+    setSelectMonth(month);
+    setSelectDay(day);
+    setFullDateArray(generator(year, month, day));
+  }, [props.date]);
   // 选中年份
   const handleChange = ({ value }) => {
     setSelectYear(value);
@@ -95,32 +89,36 @@ function BaiduCalendar(props) {
     setSelectDay(parseInt(day));
     setFullDateArray(generator(year, month, day));
   };
-  useEffect(
-    () => {
-      getInfo(selectYear, selectMonth, selectDay);
-      change([selectYear, selectMonth, selectDay].join("-"))
-    },
-    [selectYear, selectMonth, selectDay]
-  );
-  const  handleHover = ()=>{
-    setHoverClass(!hoverClass)
-  }
-  const handleChangeHoliday=({value})=>{
-    let [year ,month ,day]=value.split("-")
+  useEffect(() => {
+    getInfo(selectYear, selectMonth, selectDay);
+    change([selectYear, selectMonth, selectDay].join("-"));
+  }, [selectYear, selectMonth, selectDay]);
+  const handleHover = () => {
+    setHoverClass(!hoverClass);
+  };
+  const handleChangeHoliday = ({ value }) => {
+    let [year, month, day] = value.split("-");
     setSelectYear(parseInt(year));
     setSelectMonth(parseInt(month));
     setSelectDay(parseInt(day));
     setFullDateArray(generator(year, month, day));
-  }
-  const returnToday = ()=>{
+  };
+  const returnToday = () => {
     let time = new Date();
     setSelectYear(time.getFullYear());
-    setSelectMonth(time.getMonth()+1);
+    setSelectMonth(time.getMonth() + 1);
     setSelectDay(time.getDate());
-    setFullDateArray(generator(time.getFullYear(), time.getMonth()+1, time.getDate()));
-  }
+    setFullDateArray(
+      generator(time.getFullYear(), time.getMonth() + 1, time.getDate())
+    );
+  };
   return (
-    <div className="op-calendar-pc ">
+    <div
+      className={[
+        "op-calendar-pc ",
+        dayInfo.lunarFestival ? "op-calendar-pc-holidaystyle" : "",
+      ].join(" ")}
+    >
       <div className="op-calendar-pc-box">
         <div className="op-calendar-pc-left">
           <div
@@ -146,14 +144,17 @@ function BaiduCalendar(props) {
               />
             </div>
             <div className="op-calendar-pc-year-box">
-            <Select
+              <Select
                 options={HOLIDAY}
                 style={{ width: 130 }}
                 onChange={handleChangeHoliday}
-                defaultValue={{label:"假期",value:-1}}
+                defaultValue={{ label: "假期", value: -1 }}
               />
             </div>
-            <span className="op-calendar-pc-backtoday OP_LOG_BTN" onClick={returnToday}>
+            <span
+              className="op-calendar-pc-backtoday OP_LOG_BTN"
+              onClick={returnToday}
+            >
               返回今天
             </span>
           </div>
@@ -223,10 +224,14 @@ function BaiduCalendar(props) {
           <div
             className={[
               "op-calendar-pc-right-almanacbox",
-              hoverClass?"op-calendar-pc-right-hover":"",
+              hoverClass ? "op-calendar-pc-right-hover" : "",
             ].join(" ")}
           >
-            <div className="op-calendar-pc-right-almanac" onMouseOver={handleHover} onMouseOut={handleHover}>
+            <div
+              className="op-calendar-pc-right-almanac"
+              onMouseOver={handleHover}
+              onMouseOut={handleHover}
+            >
               <span className="op-calendar-pc-right-suit">
                 <i>宜</i>搬家
                 <br />
