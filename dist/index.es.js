@@ -825,7 +825,7 @@ var HOLIDAY = [{
   value: "2021-6-12"
 }, {
   label: "中秋节",
-  value: "2021-9-19"
+  value: "2021-9-21"
 }, {
   label: "国庆节",
   value: "2021-10-1"
